@@ -1,6 +1,7 @@
 
 # utils functions
 from django.http import JsonResponse
+
 def check_user_connected(request):
     if request.user.is_authenticated:
         return JsonResponse({'connected': True, 'username': request.user.username})

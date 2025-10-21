@@ -1,8 +1,8 @@
 from django.shortcuts import render, HttpResponse
 from django.http import JsonResponse
 from rest_framework import viewsets, permissions
-from .models.plannedEvent import PlannedEvent
-from .serializers import PlannedEventSerializer
+from models.plannedEvent import PlannedEvent
+from Serializers import PlannedEventSerializer
 
 
 

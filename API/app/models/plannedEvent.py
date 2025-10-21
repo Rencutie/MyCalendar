@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 
+
 class BaseScheduleEvent(models.Model):
     id = models.AutoField(primary_key=True)
     creator = models.ForeignKey(User, related_name="planned_events" , on_delete=models.CASCADE)
@@ -17,7 +18,7 @@ class BaseScheduleEvent(models.Model):
 
 class PlannedEvent(BaseScheduleEvent):
     start_time = models.TimeField()
-    recurenceRule = models.ForeignKey('RecurrenceRule', on_delete=models.CASCADE, blank=True, null=True)
+    recurrenceRule = models.ForeignKey('recurrenceRule', on_delete=models.CASCADE, blank=True, null=True)
     
     @property
     def end_time(self):

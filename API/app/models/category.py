@@ -9,5 +9,6 @@ class Category(models.Model):
 
     def meta(self):
         unique_together = ('creator', 'name')
+        
     def __str__(self):
         return self.name

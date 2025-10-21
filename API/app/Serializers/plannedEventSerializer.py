@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models.plannedEvent import PlannedEvent
+from models.plannedEvent import PlannedEvent
 
 class PlannedEventSerializer(serializers.ModelSerializer):
     class Meta:
