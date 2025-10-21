@@ -9,7 +9,7 @@ class PriorityLevel(models.IntegerChoices):
 
 class TodoItem(models.Model):
     itemId = models.AutoField(primary_key=True)
-    creator = models.ForeignKey(User, on_delete=models.CASCADE)
+    creator = models.ForeignKey(User, related_name="todos",on_delete=models.CASCADE)
     title = models.CharField(max_length=200)
     priority = models.IntegerField(choices=PriorityLevel.choices, default=PriorityLevel.MEDIUM)
     due_date = models.DateTimeField(blank=True, null=True)
