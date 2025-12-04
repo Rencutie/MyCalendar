@@ -1,4 +1,4 @@
-from models.profile import Profile
+from app.models.profile import Profile
 from django.contrib.auth import authenticate, login as auth_login, get_user_model
 from rest_framework import status
 from rest_framework.response import Response

@@ -1,7 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 from .category import Category
-from models.profile import Profile
+from .profile import Profile
 
 class PriorityLevel(models.IntegerChoices):
     LOW = 1, 'Low'
