@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 from .category import Category
+from models.profile import Profile
 
 class PriorityLevel(models.IntegerChoices):
     LOW = 1, 'Low'
@@ -9,7 +10,7 @@ class PriorityLevel(models.IntegerChoices):
 
 class TodoItem(models.Model):
     itemId = models.AutoField(primary_key=True)
-    creator = models.ForeignKey(User, related_name="todos",on_delete=models.CASCADE)
+    creator = models.ForeignKey(Profile, related_name="todos",on_delete=models.CASCADE)
     title = models.CharField(max_length=200)
     priority = models.IntegerField(choices=PriorityLevel.choices, default=PriorityLevel.MEDIUM)
     due_date = models.DateTimeField(blank=True, null=True)

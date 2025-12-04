@@ -1,10 +1,11 @@
 from django.db import models
 from django.contrib.auth.models import User
+from models.profile import Profile
 
 
 class BaseScheduleEvent(models.Model):
     id = models.AutoField(primary_key=True)
-    creator = models.ForeignKey(User, related_name="planned_events" , on_delete=models.CASCADE)
+    creator = models.ForeignKey(Profile, related_name="planned_events" , on_delete=models.CASCADE)
     title = models.CharField(max_length=200)
     description = models.TextField(blank=True, null=True)
     date = models.DateField()
