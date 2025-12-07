@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 from .profile import Profile
+from .recurrenceRule import RecurrenceRule
 
 
 class BaseScheduleEvent(models.Model):
@@ -19,7 +20,7 @@ class BaseScheduleEvent(models.Model):
 
 class PlannedEvent(BaseScheduleEvent):
     start_time = models.TimeField()
-    recurrenceRule = models.ForeignKey('recurrenceRule', on_delete=models.CASCADE, blank=True, null=True)
+    recurrenceRule = models.ForeignKey(RecurrenceRule, on_delete=models.CASCADE, blank=True, null=True)
     
     @property
     def end_time(self):

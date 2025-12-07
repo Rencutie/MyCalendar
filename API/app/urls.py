@@ -4,9 +4,9 @@ from .views import authantification as auth_views
 from .views import PlannedEventViewSet
 
 router = DefaultRouter()
-router.register(r'events', PlannedEventViewSet)
+router.register(r'events', PlannedEventViewSet, basename='plannedevent')
 
 urlpatterns = [
-    path('api/', include(router.urls)),
+    path('', include(router.urls)),
     path('api/auth/register/', auth_views.register, name='register'),
 ]
