@@ -7,6 +7,8 @@ router = DefaultRouter()
 router.register(r'events', PlannedEventViewSet, basename='plannedevent')
 
 urlpatterns = [
+
     path('', include(router.urls)),
+    
     path('auth/register/', auth_views.register, name='register'),
 ]
