@@ -26,19 +26,22 @@ class TestsAuth(APITestCase):
 
     
     def test_register_creates_user_and_profile(self):
-        # Arrange
-        data = {
-            'username': self.username,
-            'password': self.password,
-            'email': self.email
-        }
 
+        # Arrange - Use a NEW username that doesn't exist yet
+        data = {
+            'username': 'newuser',  # Different from self.username
+            'password': 'newpassword123',
+            'email': 'newuser@example.com'  # Different email too
+        }
         # Act
         response = self.client.post(self.register_url, data)
+        print(response.data)
         # Assert
         self.assertEqual(response.status_code, 201) 
-        self.assertTrue(User.objects.filter(user__username='testuser').exists())
-    
+        self.assertTrue(User.objects.filter(username='newuser').exists())
+        # Also check that the profile was created if applicable
+        self.assertTrue(Profile.objects.filter(user__username='newuser').exists())
+
     
     def test_successful_login_returns_tokens(self):
 
@@ -74,7 +77,7 @@ class TestsAuth(APITestCase):
 
     def test_token_refresh_obtains_new_access_token(self):
         
-        # 1. Get the initial tokens (Access and Refresh)
+        # Arrange
         login_data = {
             'username': self.username,
             'password': self.password
@@ -83,17 +86,17 @@ class TestsAuth(APITestCase):
         refresh_token = token_response.data['refresh']
         old_access_token = token_response.data['access']
         
-        # 2. Use the refresh token to get a new access token
+        # Act
         refresh_data = {
             'refresh': refresh_token
         }
         refresh_response = self.client.post(self.refresh_url, refresh_data, format='json')
         
-        # Assertions
+        # Assert
         self.assertEqual(refresh_response.status_code, status.HTTP_200_OK)
         self.assertIn('access', refresh_response.data)
         
-        # The new access token should be different from the old one
+        # Assert right new token
         self.assertNotEqual(refresh_response.data['access'], old_access_token)
 
     def test_token_refresh_with_invalid_token_fails(self):
