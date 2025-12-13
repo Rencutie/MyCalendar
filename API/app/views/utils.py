@@ -14,12 +14,8 @@ def get_user_details(request):
         user_details = {
             'username': user.username,
             'email': user.email,
-            'first_name': user.first_name,
-            'last_name': user.last_name,
         }
         return JsonResponse({'user_details': user_details})
     else:
         return JsonResponse({'error': 'User not authenticated'}, status=401)
         
-def error_response(message, status=400):
-    return JsonResponse({'error': message}, status=status)

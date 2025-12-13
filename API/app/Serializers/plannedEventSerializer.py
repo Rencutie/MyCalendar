@@ -5,6 +5,7 @@ class PlannedEventSerializer(serializers.ModelSerializer):
     class Meta:
         model = PlannedEvent
         fields = '__all__'
+        read_only_fields = ('creator',)
 
     
     

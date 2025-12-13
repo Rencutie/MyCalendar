@@ -11,4 +11,5 @@ urlpatterns = [
     path('', include(router.urls)),
     
     path('auth/register/', auth_views.register, name='register'),
+    path('api-auth/', include('rest_framework.urls'))
 ]
